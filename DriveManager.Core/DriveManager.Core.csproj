@@ -6,16 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <MauiXaml Include="Old MAUI pages\App.xaml" />
-    <MauiXaml Include="Old MAUI pages\DetailPage.xaml" />
-    <MauiXaml Include="Old MAUI pages\MainPage.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AdditionalFiles Include="Old MAUI pages\App.xaml" />
-    <AdditionalFiles Include="Old MAUI pages\DetailPage.xaml" />
-    <AdditionalFiles Include="Old MAUI pages\MainPage.xaml" />
-  </ItemGroup>
-
 </Project>
