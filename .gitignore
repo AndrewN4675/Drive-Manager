@@ -13,9 +13,6 @@ obj/
 *.userosscache
 *.sln.docstates
 
-# Avalonia / old MAUI archive (optional)
-Old MAUI pages/
-
 # VS Code settings if ever used
 .vscode/
 

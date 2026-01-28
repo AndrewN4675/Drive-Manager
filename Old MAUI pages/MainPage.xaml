@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="Drive_Manager.MainPage"
+             Shell.TitleColor="LightGray"
+             Shell.BackgroundColor="#1c1c1c">
+
+    <Grid ColumnDefinitions="0.6*, 0.4*" BackgroundColor="#1c1c1c">
+        
+        <!-- Drives -->
+        <Grid RowDefinitions="Auto, *" Grid.Column="0" Padding="20">
+            
+            <Label Grid.Column="1" Grid.Row="0" Text="Drives:" FontSize="16" TextColor="LightGrey" FontAttributes="Bold"/>
+
+            <CollectionView x:Name="collectionView" Grid.Row="1">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0,5">
+                            <Frame Background="#1F1F1F" HeightRequest="38" Padding="20, 5">
+                                <Label Text="{Binding ItemLabel}" FontSize="15" TextColor="LightGrey"/>
+                            </Frame>
+                            <Button BackgroundColor="#00FFFFFF"
+                                   Clicked="DetailedViewButtonClicked" CommandParameter="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!-- Collective drive information -->
+        <VerticalStackLayout Padding="5, 5" Spacing="10" Grid.Column="1" HorizontalOptions="Center">
+            <micro:ChartView x:Name="chartView" HeightRequest="250" WidthRequest="350"/>
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
+   
