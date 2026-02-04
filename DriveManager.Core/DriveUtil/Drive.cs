@@ -20,7 +20,7 @@ namespace Drive_Manager.DriveUtil
         }
 
         public char Letter { get; }//drive letter
-        public string ?Type { get;}
+        public string ?Type { get; }
         public string ?Format {  get; }
         public string ?Label { get; }//The user assigned name of the drive
         public float TotalSize { get; }//Total storage size of the drive in Gigabytes

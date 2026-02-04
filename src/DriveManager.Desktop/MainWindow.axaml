@@ -5,5 +5,8 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="DriveManager.Desktop.MainWindow"
         Title="DriveManager.Desktop">
-    Welcome to Avalonia!
+    <StackPanel Margin="10" Spacing="8">
+        <Button Name="MyButton" Content="Click me"/>
+        <TextBlock Name="StatusText" Text="Not clicked"/>
+    </StackPanel>
 </Window>
