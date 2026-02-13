@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="DriveManager.Desktop.Views.WelcomeView">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" 
+                    HorizontalAlignment="Center"
+                    Spacing="20">
+            <TextBlock Text="Welcome to the Application"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,10" />
+            
+            <TextBlock Text="Click below to get started"
+                       FontSize="16"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,20" />
+            
+            <Button Content="Continue"
+                    Command="{Binding ContinueCommand}"
+                    HorizontalAlignment="Center"
+                    Padding="40,10"
+                    FontSize="16" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,39 +1,43 @@
-namespace DriveManager.Desktop.ViewModels;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using DriveManager.Desktop.Views;
 
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
-using ReactiveUI;
-
-public class MainWindowViewModel : ReactiveObject
+namespace DriveManager.Desktop.ViewModels
 {
-    private object _currentView;
-    
-    public object CurrentView
+    public class MainViewModel : INotifyPropertyChanged
     {
-        get => _currentView;
-        set => this.RaiseAndSetIfChanged(ref _currentView, value);
-    }
+        private object? _currentView;
 
-    public MainWindowViewModel()
-    {
-        // Start with main view
-        var mainVM = new MainViewModel();
-        mainVM.DriveSelected += OnDriveSelected;
-        CurrentView = mainVM;
-    }
+        public object? CurrentView
+        {
+            get => _currentView;
+            set
+            {
+                _currentView = value;
+                OnPropertyChanged();
+            }
+        }
 
-    private void OnDriveSelected(Models.DriveInfo drive)
-    {
-        var detailVM = new DriveDetailViewModel(drive);
-        detailVM.BackRequested += OnBackRequested;
-        CurrentView = detailVM;
-    }
+        public MainViewModel()
+        {
+            CurrentView = new WelcomeView { DataContext = new WelcomeViewModel(this) };
+        }
 
-    private void OnBackRequested()
-    {
-        var mainVM = new MainViewModel();
-        mainVM.DriveSelected += OnDriveSelected;
-        CurrentView = mainVM;
+        public void NavigateToDriveMenu()
+        {
+            CurrentView = new DriveView { DataContext = new DriveViewModel(this) };
+        }
+
+        public void NavigateToDetail(string itemName)
+        {
+            CurrentView = new DetailView { DataContext = new DetailViewModel(this, itemName) };
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

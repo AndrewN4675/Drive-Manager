@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="DriveManager.Desktop.Views.DriveView">
+    <Grid ColumnDefinitions="2*,*" Margin="20">
+        <!-- Left side: List of items -->
+        <ScrollViewer Grid.Column="0" Margin="0,0,20,0">
+            <StackPanel Spacing="10">
+                <TextBlock Text="Available Drives"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Margin="0,0,0,15" />
+                
+                <ItemsControl ItemsSource="{Binding Items}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding Name}"
+                                    Command="{Binding $parent[UserControl].DataContext.SelectItemCommand}"
+                                    CommandParameter="{Binding Name}"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Left"
+                                    Padding="15,10"
+                                    Margin="0,0,0,5" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+        
+        <!-- Right side: Pie chart placeholder -->
+        <Border Grid.Column="1" 
+                BorderBrush="Gray" 
+                BorderThickness="1"
+                CornerRadius="5"
+                Padding="15">
+            <StackPanel>
+                <TextBlock Text="Storage Distribution"
+                           FontSize="16"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,10" />
+                
+                <Canvas Width="200" Height="200" HorizontalAlignment="Center">
+                    <!-- Simple visual representation -->
+                    <ItemsControl ItemsSource="{Binding ChartSegments}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <Rectangle Width="20" Height="20" Fill="{Binding Color}" Margin="0,0,10,0" />
+                                    <TextBlock Text="{Binding Label}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Canvas>
+                
+                <TextBlock Text="(Chart visualization placeholder)"
+                           FontSize="12"
+                           Foreground="Gray"
+                           HorizontalAlignment="Center"
+                           Margin="0,10,0,0" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
